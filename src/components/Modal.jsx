@@ -1,15 +1,15 @@
 import React from 'react';
 
-const Modal = (props) => {
-    const {largeImageURL, tags, onClose} = props;
+const Modal = ({largeImageURL, tags, onClose}) => {
+
     return (
-            <div className="modal">
-                <img
-                    onClick={onClose}
-                    src={largeImageURL}
-                     alt={tags}
-                     className="modal-image"/>
-            </div>
+        <div className="modal">
+            <img
+                onClick={onClose}
+                src={largeImageURL}
+                alt={tags}
+                className="modal-image"/>
+        </div>
     );
 };
 

@@ -1,51 +1,43 @@
 import './App.css';
 import Searchbar from "./components/Searchbar";
 import ImageGallery from "./components/ImageGallery";
-import React, {Component} from 'react';
+import React from 'react';
 import {fetchData} from "./api/fetchData";
 import Button from "./components/Button";
 
-export default class App extends Component {
-    state = {
-        images: [],
-        isLoading: true,
-        error: null,
-        page: 1,
-    }
 
-    componentDidUpdate() {
-        console.log('UPDATE');
-    }
+const App = () => {
+        const [images, setImages] = React.useState([]);
+        const [page, setPage] = React.useState(1);
+        const [searchQuery, setSearchQuery] = React.useState('');
+        const [setIsLoading] = React.useState(true);
 
-    updateSearchQuery = (e) => {
-        e.preventDefault();
-        const searchQuery = e.target[0].value;
-        fetchData(searchQuery).then(images => {
-            this.setState({images: images, isLoading: false, searchQuery: searchQuery});
-        })
-    }
+        const updateSearchQuery = (e) => {
+            e.preventDefault();
+            const searchQuery = e.target[0].value;
 
-    loadMore = () => {
-        const {page, searchQuery} = this.state;
-        fetchData(searchQuery, page + 1).then(images => {
-            this.setState(prevState => ({
-                images: [...prevState.images, ...images],
-                page: prevState.page + 1,
-            }))
-        })
-    }
+            fetchData(searchQuery).then(images => {
+                setImages(images);
+                setSearchQuery(searchQuery);
+                setIsLoading(false);
+            })
+        }
 
-    render() {
-        const {images} = this.state;
+        const loadMore = () => {
+            fetchData(searchQuery, page + 1).then(images => {
+                setImages(prevState => [...prevState, ...images]);
+                setPage(prevState => prevState + 1);
+            })
+        }
+
         return (
             <div className="App">
-                <Searchbar  onSubmit={this.updateSearchQuery}/>
-               <ImageGallery images={images}/>
-                {images.length>0 && <Button loadMore={this.loadMore}/>}
+                <Searchbar onSubmit={updateSearchQuery}/>
+                <ImageGallery images={images}/>
+                {images.length > 0 && <Button loadMore={loadMore}/>}
             </div>
         );
     }
-}
+;
 
-
-
+export default App;

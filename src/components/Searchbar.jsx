@@ -1,19 +1,17 @@
-import {Component} from "react";
+import React from 'react';
 
-export class Searchbar extends Component {
-  render() {
-      const {onSubmit } = this.props;
+const Searchbar = ({onSubmit}) => {
     return (
-        <form className="search-form" onSubmit={onSubmit}>
-            <input
-                className="searchInput"
-                type="text"
-                autoComplete="off"
-                autoFocus
-                placeholder="Search images and photos"
-            />
-        </form>
-    );
-  }
-}
+            <form className="search-form" onSubmit={onSubmit}>
+                <input
+                    className="searchInput"
+                    type="text"
+                    autoComplete="off"
+                    autoFocus
+                    placeholder="Search images and photos"
+                />
+            </form>
+        );
+};
+
 export default Searchbar;
