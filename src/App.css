@@ -1,10 +1,11 @@
 .App {
     margin: 0;
     padding: 0;
-
+    display: flex;
+    flex-direction: column;
 }
 
-.search {
+.search-form {
     padding: 10px;
     display: flex;
     align-items: center;
@@ -25,13 +26,18 @@
 .card {
     margin: 10px;
     padding: 10px;
-    width: 200px;
-    height: 200px;
-    box-shadow: #180e0e 0px 0px 3px;
-    display: flex;
-    flex-direction: column;
+border: 1px solid #b9b9b9;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
+    align-content: center;
+    width: 300px;
+    height: 200px;
+    display: flex;
     justify-content: center;
+}
+.card-image {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 input {
@@ -40,7 +46,35 @@ input {
     border: 1px solid #180e0e;
     background: #f5f5f5;
     font-size: 16px;
-    color: white;
+    color: #000000;
     border-radius: 5px;
     width: 200px;
   }
+
+.load-more-button {
+    padding: 5px;
+    height: 30px;
+    border: 1px solid #180e0e;
+    background: #f5f5f5;
+    font-size: 16px;
+    color: #000000;
+    border-radius: 5px;
+    width: 200px;
+    margin: 10px;
+    align-self: center;
+  }
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    padding: 30px;
+}
+
